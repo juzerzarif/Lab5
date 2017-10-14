@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>View Posts</title>
+        <center><h1>View Posts</h1></center>
+    </head>
+    <body>
+        <center>
+            Choose a user to view posts from:<br>
+            <form name="view_post_form" id="view_post_form" action="ViewUserPosts.php" method="POST">
+            <?php
+                $myDB = new mysqli("mysql.eecs.ku.edu", "jzarif", "P@$\$word123", "jzarif");
+            
+                if($myDB->connect_errno)
+                {
+                    printf("Connection failed: %s\n", $myDB->connect_error);
+                    exit();
+                }
+            
+                $query = "SELECT user_id FROM Users ORDER BY user_id ASC";
+                $result = $myDB->query($query);
+            
+                if($result)
+                {
+                    echo "<select name=\"user_list\" form=\"view_post_form\">";
+                    
+                    while($row = $result->fetch_assoc())
+                    {
+                        echo "<option value=\"".$row["user_id"]."\">".$row["user_id"]."</option>";
+                        
+                    }
+                    echo "</select>";
+                }
+                else
+                {
+                    echo "Select Query Failed";
+                }
+            ?>
+            <br><br><input type="submit" value="Submit">
+            </form>
+        </center>
+    </body>
+</html>
