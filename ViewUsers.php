@@ -13,7 +13,7 @@
     $query = "SELECT user_id FROM Users ORDER BY user_id ASC";
     $result = $myDB->query($query);
 
-    if($result)
+    if($result->num_rows != 0)
     {
         echo "<center><table border='1'>";
         echo "<tr><td><h4>No\.</h4></td><td><h4>Users</h4></td></tr>";

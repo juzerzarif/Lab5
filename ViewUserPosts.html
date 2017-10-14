@@ -21,11 +21,11 @@
             
                 if($result)
                 {
-                    echo "<select name=\"user_list\" form=\"view_post_form\">";
+                    echo "<select name='user_list' form='view_post_form'>";
                     
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<option value=\"".$row["user_id"]."\">".$row["user_id"]."</option>";
+                        echo "<option value='".$row["user_id"]."'>".$row["user_id"]."</option>";
                         
                     }
                     echo "</select>";
