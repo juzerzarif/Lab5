@@ -32,6 +32,7 @@
             if($result)
             {
                 echo "<center>User ID successfully added!<br>";
+                echo "<a href = 'CreatePosts.html'>Click Here</a> to submit a post<br>";
                 echo "<a href = 'CreateUser.html'>Click Here</a> to go back</center>";
             }
             else

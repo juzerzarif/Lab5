@@ -2,6 +2,8 @@
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 
+    echo "<title>View Posts</title>";
+
     $myDB = new mysqli("mysql.eecs.ku.edu", "jzarif", "P@$\$word123", "jzarif");
     $user = $_POST["user_list"];
     //var_dump($user);
@@ -29,8 +31,10 @@
     }
     else
     {
-        echo "Select Query Failed";
+        echo "<center><h3>Select Query Failed. No Posts in database.</h3></center>";
     }
 
     $myDB->close();
+
+    echo "<center><br><br><a href=\"AdminHome.html\">Click Here to go back to Admin Home</a></center>";
 ?>

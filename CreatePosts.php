@@ -2,7 +2,7 @@
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 
-    echo "<title>User Creation</title>";
+    echo "<title>Create Posts</title>";
 
     $user_id = $_POST["user_id"];
     $post = $_POST["post"];
@@ -27,6 +27,7 @@
         if($result->num_rows == 0)
         {
             echo "<center>INVALID USER ID<br>";
+            echo "<a href = 'CreateUser.html'>Click Here</a> to sign up a user ID<br>";
             echo "<a href = 'CreatePosts.html'>Click Here</a> to go back</center>";
             $result->free();
         }

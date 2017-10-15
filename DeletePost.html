@@ -6,8 +6,8 @@
     <body>
         <form name="delete_form" id="delete_form" action="DeletePost.php" method="POST">
             <center>
-            <table border="1">
-                <tr><td><h4>Posts</h4></td><td><h4>Author</h4></td><td><h4>Delete?</h4></td></tr>
+            
+                
                 <?php
                     error_reporting(E_ALL);
                     ini_set("display_errors", 1);
@@ -25,18 +25,27 @@
 
                     if($result->num_rows != 0)
                     {
+                        echo "<table border='1'>";
+                        echo "<tr><td><h4>Posts</h4></td><td><h4>Author</h4></td><td><h4>Delete?</h4></td></tr>";
                         while($row = $result->fetch_assoc())
                         {
                             echo "<tr><td>".$row["content"]."</td><td>".$row["author_id"]."</td>";
                             echo "<td><input type='checkbox' name='delete_check[]' value='".$row["post_id"]."'></td></tr>";
                         }
+                        echo "</table>";
+                        echo "<br><input type='submit' value='Submit'>";
+                    }
+                    else
+                    {
+                        echo "<h3>There are no posts</h3>";   
                     }
 
                     $myDB->close();
                 ?>
-            </table>
-            <br><input type="submit" value="Submit">
-            </center>
+            
+            
         </form>
+        <br><br><a href="AdminHome.html">Click Here to go back to Admin Home</a>
+        </center>
     </body>
 </html>
