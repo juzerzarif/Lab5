@@ -6,6 +6,12 @@
     $user = $_POST["user_list"];
     //var_dump($user);
 
+    if($myDB->connect_errno)
+    {
+        printf("Connection failed: %s\n", $myDB->connect_error);
+        exit();
+    }
+
     $query = "SELECT post_id, content FROM Posts WHERE Posts.author_id='".$user."' ORDER BY post_id";
     //echo $query;
     $result = $myDB->query($query);
@@ -25,4 +31,6 @@
     {
         echo "Select Query Failed";
     }
+
+    $myDB->close();
 ?>

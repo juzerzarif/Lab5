@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Delete Post</title>
+        <center><h1>Delete a Post. There, you get to feel like a badass</h1></center>
+    </head>
+    <body>
+        <form name="delete_form" id="delete_form" action="DeletePost.php" method="POST">
+            <center>
+            <table border="1">
+                <tr><td><h4>Posts</h4></td><td><h4>Author</h4></td><td><h4>Delete?</h4></td></tr>
+                <?php
+                    error_reporting(E_ALL);
+                    ini_set("display_errors", 1);
+
+                    $myDB = new mysqli("mysql.eecs.ku.edu", "jzarif", "P@$\$word123", "jzarif");
+
+                    if($myDB->connect_errno)
+                    {
+                        printf("Connection failed: %s\n", $myDB->connect_error);
+                        exit();
+                    }
+
+                    $query = "SELECT * FROM Posts INNER JOIN Users ON Users.user_id=Posts.author_id ORDER BY Posts.post_id ASC";
+                    $result = $myDB->query($query);
+
+                    if($result->num_rows != 0)
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo "<tr><td>".$row["content"]."</td><td>".$row["author_id"]."</td>";
+                            echo "<td><input type='checkbox' name='delete_check[]' value='".$row["post_id"]."'></td></tr>";
+                        }
+                    }
+
+                    $myDB->close();
+                ?>
+            </table>
+            <br><input type="submit" value="Submit">
+            </center>
+        </form>
+    </body>
+</html>
